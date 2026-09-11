@@ -50,11 +50,16 @@ for p in d: print(f\"  {p['slotCode']} {p['serviceDate']}  总量={p['totalImpre
 echo "→ 合同B 申请 9/1 的 200,000（合同A 已占用 40,000，可用不足）："
 curl -s -X POST "$API/contracts/$B/makegoods" -H 'Content-Type: application/json' \
   -d '{"reason":"试图超额占用","createdBy":"settle.li","allocations":[{"sourceSlotCode":"POOL-REMNANT","sourceServiceDate":"2026-09-01","impressions":200000}]}' | jqp "
-print(f\"  拒绝 [{d['code']}] {d['message']}\")"
+print(f\"  拒绝 [{d.get('code','?')}] {d.get('message', d)}\")"
 
 step "7. 合同B 正常补量 60,000 → 撤销 → 占用释放"
-PLAN=$(curl -s -X POST "$API/contracts/$B/makegoods" -H 'Content-Type: application/json' \
-  -d '{"reason":"8月缺口补量","createdBy":"settle.li","allocations":[{"sourceSlotCode":"POOL-REMNANT","sourceServiceDate":"2026-09-02","impressions":60000}]}' | jqp "print(d['id'])")
+RESP=$(curl -s -X POST "$API/contracts/$B/makegoods" -H 'Content-Type: application/json' \
+  -d '{"reason":"8月缺口补量","createdBy":"settle.li","allocations":[{"sourceSlotCode":"POOL-REMNANT","sourceServiceDate":"2026-09-02","impressions":60000}]}')
+PLAN=$(printf '%s' "$RESP" | jqp "print(d.get('id',''))")
+if [ -z "$PLAN" ]; then
+  echo "创建补量计划失败：$RESP" >&2
+  exit 1
+fi
 echo "创建计划 $PLAN（占用 9/2 的 60,000）"
 curl -s "$API/makegood-pool" | jqp "
 p=[x for x in d if x['serviceDate']=='2026-09-02'][0]

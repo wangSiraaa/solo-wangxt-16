@@ -165,24 +165,30 @@ public class AccountingService(AdReconDbContext db)
             .FirstOrDefaultAsync(c => c.Id == contractId, ct)
             ?? throw new ApiException(404, "CONTRACT_NOT_FOUND", $"合同不存在: {contractId}");
 
-        var rows = await db.ExposureFacts
+        // 先在 SQL 里做扁平投影（含批次字段），再在内存中分组汇总。
+        // EF Core/Npgsql 无法翻译以导航属性组成匿名键的 GroupBy。
+        var rows = await db.ExposureFacts.AsNoTracking()
             .Where(f => f.SlotId == slotId
                         && f.ServiceDate >= contract.PeriodStart
                         && f.ServiceDate <= contract.PeriodEnd)
-            .GroupBy(f => new
+            .Select(f => new
             {
                 f.BatchId,
                 f.Batch.BatchKey,
                 f.Batch.Source,
                 f.Batch.ImportedBy,
-                f.Batch.ImportedAtUtc
+                f.Batch.ImportedAtUtc,
+                f.ValidImpressions
             })
+            .ToListAsync(ct);
+
+        return rows
+            .GroupBy(r => new { r.BatchId, r.BatchKey, r.Source, r.ImportedBy, r.ImportedAtUtc })
             .Select(g => new BatchRollupDto(
                 g.Key.BatchId, g.Key.BatchKey, g.Key.Source, g.Key.ImportedBy,
-                g.Key.ImportedAtUtc, g.Count(), g.Sum(f => f.ValidImpressions)))
+                g.Key.ImportedAtUtc, g.Count(), g.Sum(r => r.ValidImpressions)))
             .OrderByDescending(b => b.ImportedAtUtc)
-            .ToListAsync(ct);
-        return rows;
+            .ToList();
     }
 
     /// <summary>钻取第三层：批次 → 小时行（UTC 小时与归日并列，时区换算可回查）。</summary>
