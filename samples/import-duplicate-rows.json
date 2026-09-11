@@ -1,0 +1,11 @@
+{
+  "batchKey": "SEP-W01-DEMO-RETRY",
+  "source": "SSP-LOG",
+  "importedBy": "ops.wang",
+  "note": "行级去重样本：换了批次键，但前两行与 SEP-W01-DEMO 同 (来源|广告位|小时) —— 被吞；第三行是新数据",
+  "rows": [
+    { "slotCode": "SH-OPENSCREEN", "hourUtc": "2026-08-10T02:00:00Z", "validImpressions": 9999 },
+    { "slotCode": "NY-FEED",       "hourUtc": "2026-08-10T14:00:00Z", "validImpressions": 8888 },
+    { "slotCode": "NY-FEED",       "hourUtc": "2026-08-10T15:00:00Z", "validImpressions": 460 }
+  ]
+}

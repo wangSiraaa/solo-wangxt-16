@@ -1,0 +1,11 @@
+{
+  "batchKey": "AUG-W2W4-RECOVERY",
+  "source": "ADX-LOG",
+  "importedBy": "ops.zhang",
+  "note": "迟到日志样本：补传 AUG-W2-W4 丢失的 3 个小时分片。若归日已落在确认账期内 → 只生成差额，不覆盖台账",
+  "rows": [
+    { "slotCode": "SH-OPENSCREEN", "hourUtc": "2026-08-12T10:00:00Z", "validImpressions": 644 },
+    { "slotCode": "NY-FEED",       "hourUtc": "2026-08-15T10:00:00Z", "validImpressions": 371 },
+    { "slotCode": "LDN-BANNER",    "hourUtc": "2026-08-18T10:00:00Z", "validImpressions": 558 }
+  ]
+}

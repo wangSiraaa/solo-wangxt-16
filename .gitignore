@@ -1,0 +1,31 @@
+# Local secrets and connection overrides
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.p12
+*.pfx
+*credentials*
+*secrets*
+*.token
+.access-token
+access-token.*
+
+# .NET build output and local tooling
+**/bin/
+**/obj/
+.dotnet/
+
+# Frontend dependencies and caches
+web/node_modules/
+web/.angular/
+
+# Local PostgreSQL/runtime state (the repository does not ship a database)
+.pg/
+.pgdata/
+.pg.log
+
+# Local logs and OS metadata
+*.log
+.DS_Store

@@ -1,0 +1,36 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{9864139A-023C-42EA-B23D-1B37176A63A0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AdRecon.Api", "src\AdRecon.Api\AdRecon.Api.csproj", "{701E5A6D-417F-4528-B8B6-CA3F93B4D4E0}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{38578A61-4E4B-4943-B883-A9F3A7117EFC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AdRecon.Tests", "tests\AdRecon.Tests\AdRecon.Tests.csproj", "{28D7CFC0-1D8C-4CC5-A29C-085361EB686D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{701E5A6D-417F-4528-B8B6-CA3F93B4D4E0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{701E5A6D-417F-4528-B8B6-CA3F93B4D4E0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{701E5A6D-417F-4528-B8B6-CA3F93B4D4E0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{701E5A6D-417F-4528-B8B6-CA3F93B4D4E0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{28D7CFC0-1D8C-4CC5-A29C-085361EB686D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{28D7CFC0-1D8C-4CC5-A29C-085361EB686D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{28D7CFC0-1D8C-4CC5-A29C-085361EB686D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{28D7CFC0-1D8C-4CC5-A29C-085361EB686D}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{701E5A6D-417F-4528-B8B6-CA3F93B4D4E0} = {9864139A-023C-42EA-B23D-1B37176A63A0}
+		{28D7CFC0-1D8C-4CC5-A29C-085361EB686D} = {38578A61-4E4B-4943-B883-A9F3A7117EFC}
+	EndGlobalSection
+EndGlobal

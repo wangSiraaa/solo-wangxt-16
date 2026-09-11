@@ -1,0 +1,12 @@
+{
+  "batchKey": "SEP-W01-DEMO",
+  "source": "SSP-LOG",
+  "importedBy": "ops.zhang",
+  "note": "正常导入：另一日志管线(SSP-LOG)的小时汇总，与 ADX-LOG 互不冲突",
+  "rows": [
+    { "slotCode": "SH-OPENSCREEN", "hourUtc": "2026-08-10T02:00:00Z", "validImpressions": 700 },
+    { "slotCode": "SH-OPENSCREEN", "hourUtc": "2026-08-10T03:00:00Z", "validImpressions": 655 },
+    { "slotCode": "NY-FEED",       "hourUtc": "2026-08-10T14:00:00Z", "validImpressions": 480 },
+    { "slotCode": "LDN-BANNER",    "hourUtc": "2026-08-10T08:00:00Z", "validImpressions": 530 }
+  ]
+}
